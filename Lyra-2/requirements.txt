@@ -33,6 +33,7 @@ ffmpegcv
 # Configuration/Hydra
 hydra-core==1.3.2
 omegaconf==2.3.0
+antlr4-python3-runtime==4.9.3
 pyyaml==6.0.2
 
 # Tokenizers and text processing
