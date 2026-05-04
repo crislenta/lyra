@@ -13,6 +13,7 @@ ROOT_DIR="${ROOT_DIR:-${INSTALL_ROOT}/Lyra-2}"
 SERVICE_SCRIPT="/usr/local/bin/lyra2-ui-service"
 
 export DEBIAN_FRONTEND=noninteractive
+export CONDA_BACKUP_CXX="${CONDA_BACKUP_CXX:-}"
 apt-get update
 apt-get install -y --no-install-recommends git curl ca-certificates build-essential
 
@@ -38,7 +39,7 @@ if ! conda env list | awk '{print $1}' | grep -qx "$CONDA_ENV"; then
   conda create -n "$CONDA_ENV" python=3.10 pip cmake ninja libgl ffmpeg packaging -c conda-forge -y
 fi
 conda activate "$CONDA_ENV"
-CONDA_BACKUP_CXX="" conda install gcc=13.3.0 gxx=13.3.0 eigen zlib -c conda-forge -y
+conda install gcc=13.3.0 gxx=13.3.0 eigen zlib -c conda-forge -y
 conda install cuda -c nvidia/label/cuda-12.8.0 -y
 
 export CUDA_HOME="$CONDA_PREFIX"
