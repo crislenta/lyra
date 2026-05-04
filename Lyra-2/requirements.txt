@@ -41,6 +41,7 @@ sentencepiece==0.2.0
 tiktoken==0.9.0
 tokenizers==0.22
 ftfy==6.3.1
+wcwidth==0.2.13
 regex==2024.11.6
 
 # Data loading and storage
