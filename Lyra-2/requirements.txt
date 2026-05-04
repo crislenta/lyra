@@ -89,6 +89,9 @@ lazy-loader>=0.4
 hatchling
 hatch-vcs>=0.4
 editables
+pathspec==0.12.1
+pluggy==1.6.0
+trove-classifiers==2026.4.18.16
 
 # Testing
 coverage==7.9.2
