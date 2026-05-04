@@ -24,6 +24,7 @@ export GCP_ZONE="us-central1-a"
 export GCP_MACHINE_TYPE="a3-highgpu-1g"
 export GCP_GPU_TYPE="nvidia-h100-80gb"
 export GCP_GPU_COUNT="1"
+export GCP_IMAGE_FAMILY="common-cu129-ubuntu-2204-nvidia-580"
 
 Lyra-2/deploy/gcp/create_gce_vm.sh
 ```

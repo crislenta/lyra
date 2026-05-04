@@ -10,8 +10,8 @@ set -euo pipefail
 #
 # Optional overrides:
 #   GCP_PROJECT_ID, GCP_ZONE, INSTANCE_NAME, GCP_MACHINE_TYPE, GCP_GPU_TYPE,
-#   GCP_GPU_COUNT, BOOT_DISK_SIZE, LYRA_REPO_URL, LYRA_REPO_BRANCH,
-#   ALLOW_HTTP_SOURCE_RANGE, SERVICE_ACCOUNT
+#   GCP_GPU_COUNT, BOOT_DISK_SIZE, GCP_IMAGE_FAMILY, LYRA_REPO_URL,
+#   LYRA_REPO_BRANCH, ALLOW_HTTP_SOURCE_RANGE, SERVICE_ACCOUNT
 
 PROJECT_ID="${GCP_PROJECT_ID:-$(gcloud config get-value project 2>/dev/null)}"
 ZONE="${GCP_ZONE:-us-central1-a}"
@@ -20,6 +20,7 @@ MACHINE_TYPE="${GCP_MACHINE_TYPE:-a3-highgpu-1g}"
 GPU_TYPE="${GCP_GPU_TYPE:-nvidia-h100-80gb}"
 GPU_COUNT="${GCP_GPU_COUNT:-1}"
 BOOT_DISK_SIZE="${BOOT_DISK_SIZE:-500GB}"
+IMAGE_FAMILY="${GCP_IMAGE_FAMILY:-common-cu129-ubuntu-2204-nvidia-580}"
 REPO_URL="${LYRA_REPO_URL:-https://github.com/nv-tlabs/lyra.git}"
 REPO_BRANCH="${LYRA_REPO_BRANCH:-main}"
 ALLOW_HTTP_SOURCE_RANGE="${ALLOW_HTTP_SOURCE_RANGE:-0.0.0.0/0}"
@@ -73,7 +74,7 @@ gcloud compute instances create "${INSTANCE_NAME}" \
   --provisioning-model STANDARD \
   --boot-disk-size "${BOOT_DISK_SIZE}" \
   --boot-disk-type pd-ssd \
-  --image-family common-cu128 \
+  --image-family "${IMAGE_FAMILY}" \
   --image-project deeplearning-platform-release \
   --metadata-from-file "startup-script=${STARTUP_SCRIPT}" \
   --metadata "repo-url=${REPO_URL},repo-branch=${REPO_BRANCH},hf-token=${HF_TOKEN:-}" \
