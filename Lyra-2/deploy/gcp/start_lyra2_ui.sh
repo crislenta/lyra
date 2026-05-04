@@ -68,7 +68,7 @@ fi
 
 cat > "$SERVICE_SCRIPT" <<EOF
 #!/usr/bin/env bash
-set -euo pipefail
+set -eo pipefail
 source "\$(conda info --base)/etc/profile.d/conda.sh"
 conda activate "$CONDA_ENV"
 cd "$ROOT_DIR"
